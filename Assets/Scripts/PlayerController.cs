@@ -49,7 +49,8 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Destroy(GameObject.FindGameObjectWithTag("Player"));
+            winText.text = "rip lmao";
+            StartCoroutine(WaitAndInvoke(5, levelReload));
         }
     }
 
@@ -70,6 +71,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void nextLevel(){
+        Debug.Log("do i even get seen");
         int totalScenes = SceneManager.sceneCountInBuildSettings;
         int nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
         if (nextSceneToLoad <= totalScenes - 1)
@@ -78,6 +80,19 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    void levelReload(){
+        Debug.Log("Trying to reload");
+        int sceneToLoad = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(sceneToLoad);
+    }
+
+    delegate void InvokedFunction();
+
+     IEnumerator WaitAndInvoke(float secondsToWait, InvokedFunction func) {
+     yield return new WaitForSeconds(secondsToWait);
+     func();
 }
 
 
+}
