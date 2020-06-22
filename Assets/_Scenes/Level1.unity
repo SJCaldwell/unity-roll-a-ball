@@ -592,6 +592,7 @@ GameObject:
   - component: {fileID: 678190357}
   - component: {fileID: 678190356}
   - component: {fileID: 678190358}
+  - component: {fileID: 678190359}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -686,9 +687,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  pickupSound: {fileID: 0}
-  countText: {fileID: 1503565331}
-  winText: {fileID: 1452817737}
 --- !u!54 &678190357
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -801,6 +799,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &678190359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678190351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1931499fe74f794d8368ed2dbc0e683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  pickupSound: {fileID: 678190358}
+  countText: {fileID: 1503565331}
+  winText: {fileID: 1452817737}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
