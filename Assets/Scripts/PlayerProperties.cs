@@ -61,7 +61,6 @@ public class PlayerProperties : MonoBehaviour
     }
 
     void nextLevel(){
-        Debug.Log("do i even get seen");
         int totalScenes = SceneManager.sceneCountInBuildSettings;
         int nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
         if (nextSceneToLoad <= totalScenes - 1)
@@ -72,7 +71,6 @@ public class PlayerProperties : MonoBehaviour
     }
 
     void levelReload(){
-        Debug.Log("Trying to reload");
         int sceneToLoad = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(sceneToLoad);
     }
