@@ -9,10 +9,12 @@ public class PlayerAgent : Agent
     private Rigidbody rb;
     public Transform Target;
     public float speed = 10;
+    private GameObject item;
 
     void Start()
     {
-       rb = GetComponent<Rigidbody>(); 
+       rb = GetComponent<Rigidbody>();
+       item = GameObject.FindGameObjectsWithTag("Target")[0];
     }
 
     public override void OnEpisodeBegin(){
@@ -25,14 +27,23 @@ public class PlayerAgent : Agent
         }
 
         // Move the target to a new spot
+        // Then activate pickup if was deactivated
         Target.localPosition = new Vector3(Random.value * 8 - 4,
                                            0.5f,
                                            Random.value * 8 - 4);
+        item.SetActive(true);
+
     }
 
     public override void CollectObservations(VectorSensor sensor){
         //Target and agent positions
+        if (item.activeSelf == false){
+            sensor.AddObservation(new Vector3(-1f,
+                                              -1f,
+                                              -1f));
+    }else{
         sensor.AddObservation(Target.localPosition);
+    }
         sensor.AddObservation(this.transform.localPosition);
 
         // Agent velocity
@@ -49,7 +60,9 @@ public class PlayerAgent : Agent
 
         float distanceToTarget = Vector3.Distance(this.transform.localPosition, Target.localPosition);
 
-        if (distanceToTarget < 1.42f){
+        // refactor to detect actual collision
+        if (item.activeSelf == false){
+            //you got it
             SetReward(1.0f);
             EndEpisode();
         }
